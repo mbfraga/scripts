@@ -1,0 +1,15 @@
+#!/bin/bash
+# Print all 256 colors defined in your terminal emulator
+
+#for i in {0..255} ; do 
+#   printf "\x1b[38;5;${i}m ${i} "
+#done
+
+n=0
+for i in {0..31}; do
+   for e in {0..7}; do
+      printf "\x1b[38;5;${n}m█%03d \033[0m" $n
+      n=$((n+1))
+   done
+   printf "\n"
+done

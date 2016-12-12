@@ -18,8 +18,11 @@
 #
 # Script Created By: https://github.com/mbfraga Feel free to do anything you
 # want with this script.
-
 launcher=dmenu # dmenu/rofi
+character_list="./special_character_list"
+sep=":"
+
+cd $(dirname $0)
 
 if [ $# > 0 ]; then
    if [ "$1" == "-d" ]; then
@@ -122,30 +125,30 @@ n tilda     :ñ\n
 enie        :ñ\n
 ae          :æ\n
 diameter    :ø\n
-o with stroke :ø\n
-thorn       :þ\n
-inverted exclamation mark: ¡\n
+o with stroke               :ø\n
+thorn                       :þ\n
+inverted exclamation mark   :¡\n
 
-em-dash     :—\n
+em-dash                     :—\n
 
 
-circ        :°\n
-degrees     :°\n
-oo          :°\n
-angstroms   :Å\n
-tm          :™\n
-pound       :£\n
-yen         :¥\n
-cents       :¢\n
-copyright   :©\n
-registered  :®\n
-plusorminus :±\n
-micron      :µ\n
-paragraph   :¶\n
-middle dot  :·\n
-multiplication :×\n
-division    :÷\n
-gun         :¬\n
+circ               :°\n
+degrees            :°\n
+oo                 :°\n
+angstroms          :Å\n
+tm                 :™\n
+pound              :£\n
+yen                :¥\n
+cents              :¢\n
+copyright          :©\n
+registered         :®\n
+plusorminus        :±\n
+micron             :µ\n
+paragraph          :¶\n
+middle dot         :·\n
+multiplication     :×\n
+division           :÷\n
+gun                :¬\n
 
 
 sup1        :¹\n
@@ -192,12 +195,14 @@ smiley_arab_surprised  :   ة\n
 smiley_arab_surprised  :   ت\n
 '
 
-
 if [ "$launcher" == "dmenu" ]; then
-   selected_string=$(echo -e $symbols | _dmenu)
+   selected_string=$(cat $character_list | _dmenu)
 elif [ "$launcher" == "rofi" ]; then
-   selected_string=$(echo -e $symbols | _rofi)
+   selected_string=$(cat $character_list | _rofi)
 fi
 
-selected_symbol=$(echo $selected_string | cut -d : -f 2 )
+selected_symbol=$(echo $selected_string | cut -d $sep -f 2 )
+#trim whitespace
+selected_symbol=${selected_symbol// }
+
 setxkbmap us; xdotool type --delay 100 "$selected_symbol"
