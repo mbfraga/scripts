@@ -1,4 +1,4 @@
-alpha       :    α
+alpha       :α
 beta        :β
 gamma       :γ
 delta       :δ
@@ -65,6 +65,7 @@ thorn                       :þ
 inverted exclamation mark   :¡
 
 em-dash                     :—
+--                          :—
 
 
 
@@ -72,6 +73,7 @@ circ               :°
 degrees            :°
 oo                 :°
 angstroms          :Å
+ao0                :Å
 tm                 :™
 pound              :£
 yen                :¥
