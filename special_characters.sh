@@ -1,16 +1,17 @@
 #!/bin/bash
-# Creates a menu of special characters via dmenu or rofi Once a character is
-# selected, it is pasted to the cursor via xdotool symbols can be added with
-# any keyword, but make sure to keep the syntax
+# Creates a menu of special characters via dmenu or rofi. Once a character is
+# selected, it is pasted to the cursor via xdotool. Symbols can be added to the
+# menu on the character_list with any keyword, but make sure to keep the syntax
 #
-# syntax: keyword    :$symbol
+# syntax: 
+#     keyword    :$symbol
 #
-# $symbol will be the characters printed via xdotool. Anything between the
+# $symbol will be the character printed via xdotool. Anything between the
 # colon and the \n (linebreak) will be pasted, excluding trailing whitespace.
 #
 # note1: By modifying 'sep', a different character rather than colon could be
-# used, in case some of the symbols desired have colons in them. For my purpose,
-# this has never been the case.
+# used, in case some of the symbols used have colons in them. For my
+# purpose, this has never been the case.
 #
 # note2: The xdotool is given a delay because of issues I've had with printing
 # long smileys, this could be removed if only single-character symbols are
