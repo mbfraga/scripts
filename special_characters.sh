@@ -60,11 +60,11 @@ fi
 
 
 _rofi () {
-      rofi -dmenu -p "(symbols): " $@
+      rofi -dmenu -sync -p "(symbols): " $@
 }
 
 _dmenu () {
-   dmenu $@
+   dmenu -l 10 $@
 }
 
 
