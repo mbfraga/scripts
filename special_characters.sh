@@ -79,4 +79,4 @@ selected_symbol=$(echo $selected_string | cut -d $sep -f 2 )
 #trim whitespace
 selected_symbol=${selected_symbol// }
 
-setxkbmap us; xdotool type --delay 100 "$selected_symbol"
+xdotool type --delay 100 "$selected_symbol"
