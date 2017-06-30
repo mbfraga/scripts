@@ -1,92 +1,262 @@
-alpha       :α
-beta        :β
-gamma       :γ
-delta       :δ
-epsilon     :ε
-zeta        :ζ
-eta         :η
-theta       :θ
-iota        :ι
-kappa       :κ
-lambda      :λ
-mu          :μ
-nu          :ν
-xi          :ξ
-omicron     :ο
-pi          :π
-rho         :ρ
-sigma       :σ
-tau         :τ
-upsilon     :υ
-phi         :φ
-chi         :χ
-psi         :ψ
-omega       :ω
+alpha   g-a     :α
+beta    g-b     :β
+gamma   g-g     :γ
+delta   g-d     :δ
+epsilon g-e     :ε
+zeta    g-z     :ζ
+eta     g-h     :η
+theta   g-j     :θ
+iota    g-i     :ι
+kappa   g-k     :κ
+lambda  g-l     :λ
+mu      g-m     :μ
+nu      g-n     :ν
+xi      g-x     :ξ
+omicron g-o     :ο
+pi      g-p     :π
+rho     g-r     :ρ
+sigma   g-s     :σ
+tau     g-t     :τ
+upsilon g-u     :υ
+phi     g-f     :φ
+chi     g-q     :χ
+psi     g-y     :ψ
+omega   g-w     :ω
 
 
-Alpha       :Α
-Beta        :Β
-Gamma       :Γ
-Delta       :Δ
-Epsilon     :Ε
-Zeta        :Ζ
-Eta         :Η
-Theta       :Θ
-Iota        :Ι
-Kappa       :Κ
-Lambda      :Λ
-Mu          :Μ
-Nu          :Ν
-Xi          :Ξ
-Omicron     :Ο
-Pi          :Π
-Rho         :Ρ
-Sigma       :Σ
-Tau         :Τ
-Upsilon     :Υ
-Phi         :Φ
-Chi         :Χ
-Psi         :Ψ
-Omega       :Ω
+Alpha   g-A     :Α
+Beta    g-B     :Β
+Gamma   g-g     :Γ
+Delta   g-D     :Δ
+Epsilon g-E     :Ε
+Zeta    g-Z     :Ζ
+Eta     g-H     :Η
+Theta   g-J     :Θ
+Iota    g-I     :Ι
+Kappa   g-K     :Κ
+Lambda  g-L     :Λ
+Mu      g-M     :Μ
+Nu      g-N     :Ν
+Xi      g-X     :Ξ
+Omicron g-O     :Ο
+Pi      g-P     :Π
+Rho     g-R     :Ρ
+Sigma   g-S     :Σ
+Tau     g-T     :Τ
+Upsilon g-U     :Υ
+Phi     g-F     :Φ
+Chi     g-Q     :Χ
+Psi     g-Y     :Ψ
+Omega   g-W     :Ω
 
-accent a    :á
-accent e    :é
-accent i    :í
-accent o    :ó
-accent u    :ú
-n tilda     :ñ
+accent a a'   :á
+accent e e'   :é
+accent i i'   :í
+accent o o'   :ó
+accent u u'   :ú
+n tilda  n~   :ñ
 enie        :ñ
 ae          :æ
 diameter    :ø
 
 
-o with stroke               :ø
-thorn                       :þ
-inverted exclamation mark   :¡
-
-em-dash                     :—
---                          :—
-
+o with stroke    /o\ \o/    : ø
+thorn                       : þ
+inverted exclamation mark ! : ¡
+inverted question mark  ?   : ¿
+em-dash    ---              : —
 
 
-circ               :°
-degrees            :°
-oo                 :°
-angstroms          :Å
-ao0                :Å
-tm                 :™
-pound              :£
-yen                :¥
-cents              :¢
-copyright          :©
-registered         :®
-plusorminus        :±
-micron             :µ
-paragraph          :¶
-middle dot         :·
-multiplication     :×
-division           :÷
-gun                :¬
+math union                        : ∪
+math intersection                 : ∩
+math proportional                 : ∝
+math not                          : ¬
+math not equal  !=  /=            : ≠
+math equivalence                  : ≡
+math equal by definition          : ≜
+math approximately  ~=            : ≈
+math congruent      ~=            : ≅
+math greater equal                : ≥
+math less equal                   : ≤
+math much less                    : ≪
+math much more                    : ≪
+math or                           : ⊕
+math contains                     : ∈
+math plusorminus                  : ±
+math for every / for all          : ∀
+math there exists                 : ∃
+math there does not exists        : ∄
+math therefore                    : ∴
+math because since                : ∵
+math minusorplus                  : ±
+math middle dot                   : ·
+math multiplication     xx        : ×
+math division                     : ÷
+math gun                          : ¬
+math perpendicular                : ⊥
+math x variable                   : x
+math infinite                     : ∞
+88                                : ∞
+math composition                  : ∘
+middle hollow dot                 : ∘
+math vertical line                : |
+math hermitian                    : †
+math proper subset                : ⊂
+math subset                       : ⊆
+math not subset                   : ⊄
+math not superset                 : ⊅
+math symmetric difference         : ⊖
+math element of                   : ∈
+math not element of               : ∉
+math empty set                    : Ø
+math circled plus oplus           : ⊕
+math implies                      : ⇒
+math equivalent                   : ⇔
+math equivalent                   : ↔
+math if and oly if                : ↔
+math defined as                   : ≔
+math integral                     : ∫
+math closed line integral         : ∮
+math closed surface integral      : ∯
+math closed volume integral       : ∰
+//                                : ⁄
+fraction slash                    : ⁄
+
+arrow up                  : ↑
+arrow down                : ↓
+arrow left  <-            : ←
+arrow right ->            : →
+arrow left and right lr   : ⇆
+arrow right and left rl   : ⇄
+arrow return              : ↵
+arrow downright           : ↘
+arrow downleft            : ↙
+arrow upright             : ↗
+arrow upleft              : ↖
+arrow up and down         : ↕
+arrow left and right      : ↔
+check mark                : ✔
+ok                        : ✔
+horizontal ellipsis ...   : …
+mid ellipsis              : ⋯
+vertical ellipsis         : ⁝
+tricolon                  : ⁝
+vertical three dots       : ⁝
+vertical four dots        : ⁞
+left double quote ldq     : “
+right double quote rdq    : ”
+right quote rq            : ’
+
+box drawing 1             : ░
+box drawing 2             : ▒
+box drawing 3             : ▓
+box drawing 4             : █
+
+line drawing               : └
+line drawing               : ─
+line drawing               : ┘
+line drawing               : │
+line drawing               : ┼
+line drawing               : │
+line drawing               : ┌
+line drawing               : ─
+line drawing               : ┐
+line drawing               : ┴
+
+line drawing               : ┴
+line drawing               : ├
+line drawing               : ┤
+line drawing               : ┬
+
+
+double line drawing        : ╚
+double line drawing        : ═
+double line drawing        : ╝
+double line drawing        : ║
+double line drawing        : ┼
+double line drawing        : ║
+double line drawing        : ╔
+double line drawing        : ═
+double line drawing        : ╗
+
+double line drawing        : ╩
+double line drawing        : ╠
+double line drawing        : ╣
+double line drawing        : ╦
+
+left bracket              : ｢
+right bracket             : ｣
+right angle bracket       : 〉
+left angle bracket        : 〈
+left corner bracket       : 「
+right corner bracket      : 」
+fat left corner bracket   : 『
+fat right corner bracket  : 』
+
+
+frog                      : 🐸
+cow                       : 🐮
+cow2                      : 🐄
+pig                       : 🐷
+turtle                    : 🐢
+cat                       : 🐈
+duck                      : 🦆
+dog                       : 🐶
+snowman                   : ⛇
+pizza                     : 🍕
+pizza2                    : 🍕
+poop                      : 💩
+
+
+emoji smiling face        : ☺
+emoji frowning face       : ☹
+emoji smile               : 😃
+emoji tongue out          : 😛
+emoji wink                : 😉
+emoji surprise            : 😲
+emoji scared fear         : 😨
+emoji not amused serious  : 😐
+emoji crying              : 😢
+emoji cry laugh           : 😂
+emoji upside down smile   : 🙃
+emoji solid star          : ★
+emoji hollow star         : ☆
+emoji circled hollow star : ✪
+emoji yin yang            : ☯
+emoji 100 points          : 💯
+emoji okay ok             : 👌
+emoji drops water         : 💦
+emoji eggplant            : 🍆
+
+
+circ               : °
+degrees            : °
+oo                 : °
+angstroms          : Å
+ao0                : Å
+tm                 : ™
+trademark          : ™
+pound              : £
+yen                : ¥
+cents              : ¢
+copyright          : ©
+CO                 : ©
+registered         : ®
+CR                 : ®
+micron    ,u,      : µ
+paragraph          : ¶ 
+super pi           : ℼ
+euler              : ℯ
+italic n           : 𝒏
+spinal tap         : n̈
+celcius            : ℃
+farhenheit         : ℉
+biohazard          : ☣
+radioactive        : ☢
+
+heart              : ❤
+broken heart       : 💔
+side heart         : ❥
 
 
 sup1        :¹
@@ -110,26 +280,102 @@ sub8        :₈
 sub9        :₉
 sub0        :₀
 
-bto                        :BaTiO₃
+superscript n         : ⁿ
+superscript i         : ⁱ
+superscript theta     : ᶿ
 
-smiley_hug1                :(っ´ω｀)っ
-smiley_hug2                :⊂(´Д`⊂)
-smiley_mischevious         :(｡◕‿‿◕｡)
-smiley_frustrated          :(屮ﾟДﾟ)屮
-smiley_fight               :(ง •̀_•́)ง
-smiley_fight_srz           :(ง ͠° ͟ʖ ͡°)ง
-smiley_fightL              :L(° O °L)
+subscript minus -     : ₋
+subscript a           : ₐ
+subscript e           : ₑ
+subscript o           : ₒ
+subscript x           : ₓ
+subscript e inverted  : ₔ
+subscript h           : ₕ
+subscript k           : ₖ
+subscript l           : ₗ
+subscript m           : ₘ
+subscript n           : ₙ
+subscript p           : ₚ
+subscript s           : ₛ
+subscript t           : ₜ
+
+bto  batio3           :BaTiO₃
+tio2                  :TiO₂
+e=mc2                 :E = m·c²
+
+
+smiley_hug1                : (っ´ω｀)っ
+smiley_hug2                : ⊂(´Д`⊂)
+smiley_mischevious         : (｡◕‿‿◕｡)
+smiley_frustrated          : (屮ﾟДﾟ)屮
+smiley_fight               : (ง •̀_•́)ง
+smiley_fight_srz           : (ง ͠° ͟ʖ ͡°)ง
+smiley_fightL              : L(° O °L)
 smiley_fin_adventure_time  : | (• ◡•)|
 smiley_dunno               : ¯\(°_o)/¯
 smiley_dunno2              : ┐( ﾟーﾟ)┌
 smiley_dunno3              : ¯\(°◡ﾟ)/¯
+smiley dunno4              : ┐('～`；)┌"
 smiley_jake_adventure_time : (❍ᴥ❍ʋ)
-smiley_wtf                 : (ಠ_ಠ)
+smiley wtf mad             : (ಠ_ಠ)
 smiley_crying              : (ಥ_ಥ)
 smiley_smug                : (￣ω￣)
 smiley_smug2               : （￣へ￣）
+smiley_surprised_nose      : ( °  ʖ ° )
+smiley lenny               : ( ͡° ͜ʖ ͡°)
+smiley shrug               : ┐(ツ)┌
+smiley_koala               : ʕ•ᴥ•ʔ
+smiley_koala_celebrating   : \ʕ•ᴥ•ʔ/
 
 
-smiley_arab_surprised  :   ة
-smiley_arab_smile_happy  :   ت
+
+inverted wut               : ¿ʇnʍ
+
+rebels                     : 
+empire                     : 
+
+wide a                     :Ａ
+wide b                     :Ｂ
+wide c                     :Ｃ
+wide d                     :Ｄ
+wide e                     :Ｅ
+wide f                     :Ｆ
+wide g                     :Ｇ
+wide h                     :Ｈ
+wide i                     :Ｉ
+wide j                     :Ｊ
+wide k                     :Ｋ
+wide l                     :Ｌ
+wide m                     :Ｍ
+wide n                     :Ｎ
+wide o                     :Ｏ
+wide p                     :Ｐ
+wide q                     :Ｑ
+wide r                     :Ｒ
+wide s                     :Ｓ
+wide t                     :Ｔ
+wide u                     :Ｕ
+wide v                     :Ｖ
+wide w                     :Ｗ
+wide x                     :Ｘ
+wide y                     :Ｙ
+wide z                     :Ｚ
+wide 0                     :０
+wide 1                     :１
+wide 2                     :２
+wide 3                     :３
+wide 4                     :４
+wide 5                     :５
+wide 6                     :６
+wide 7                     :７
+wide 8                     :８
+wide 9                     :９
+wide .                     :．
+wide ,                     :，
+wide (                     :（
+wide )                     :）
+wide ?                     :？
+wide !                     :！
+wide '                     :＇
+wide space                 : 　
 
