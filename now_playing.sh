@@ -19,7 +19,7 @@ $HELP_TAB-h for help"
 _show_help () {
    IFS=";"
    for hl in $HELP; do
-      echo $hl
+      echo "$hl"
    done
 
 }
@@ -71,7 +71,7 @@ if   [[ $1 == '-n' ]]; then
    exit 0
 elif [[ $1 == '-p' ]]; then
    sleep 0.1
-   xdotool type --delay 1 "Now Playing: $np"
+   xdotool type --delay 2 "Now Playing: $np"
    exit 0
 elif [[ $1 == '-h' ]]; then
    _show_help

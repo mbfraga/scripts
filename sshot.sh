@@ -81,9 +81,9 @@ function upload() {
    if [[ ! -z $1 ]]; then
       #p=1 == long url
       #sunset=432000 kill screenshot after 5 days
-      `curl -F c=@${1} -F p=1 sunset=432000 https://ptpb.pw &>/tmp/curl.progress` 
+      $(curl -F c=@${1} -F p=1 sunset=432000 https://ptpb.pw &>/tmp/curl.progress)
       wait
-      url=$(cat /tmp/curl.progress | tail -n-2 | head -n1 | cut -c6-)
+      url=$(tail -n-2 /tmp/curl.progress | head -n1 | cut -c6-)
 
       regex='(https?|http)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
       if [[ ! $url =~ $regex ]]; then
@@ -95,8 +95,8 @@ function upload() {
          exit 1
       else
          notify-send "Screenshot taken" "${url}" && \
-         echo -n $url | xclip -i -selection primary && \
-         echo -n $url | xclip -i -selection clipboard
+         echo -n "$url" | xclip -i -selection primary && \
+         echo -n "$url" | xclip -i -selection clipboard
       fi
    fi
 }
@@ -106,7 +106,7 @@ function _maim() {
    if [[ ! $DELAY = true ]]; then
       maim "$@"
    else
-      maim -d $DELAY_TIME "$@"
+      maim -d "$DELAY_TIME" "$@"
    fi
    if [[ $? -eq 1 ]]; then
       echo "Error in maim. In most cases, it just means the selection was cancelled (which is normal behavior)."
@@ -185,43 +185,43 @@ function parseargs () {
 
 
 function mainf() {
-   parseargs $@
+   parseargs "$@"
    if [[ $SCREENSHOT_TYPE == "all" ]]; then
-      _maim $IMGLOC
+      _maim "$IMGLOC"
       wait
-      check_img $IMGLOC
+      check_img "$IMGLOC"
 
    elif [[ $SCREENSHOT_TYPE == "sel" ]]; then
-      _maim $SELECTION_SETTINGS -s $IMGLOC
+      _maim ''$SELECTION_SETTINGS'' -s "$IMGLOC"
       wait
-      check_img $IMGLOC
+      check_img "$IMGLOC"
 
    elif [[ $SCREENSHOT_TYPE == "display" ]] || [[ $SCREENSHOT_TYPE == "dispnum" ]]; then
       IFS=$'\n'
       disp_ct=0
       for disps in $(xrandr | grep " connected") 
       do
-         disp_ct=$(($disp_ct+1))
+         disp_ct=$((disp_ct+1))
          #echo display: $disps
          IFS=$' '
          disp=($(echo -n "$disps" | awk {'printf ("%s %s %s %s", $1, $2, $3, $4)'}))
 
-         if [[ $disp_ct == $TARGET_DISP_NUM ]]; then
+         if [[ $disp_ct == "$TARGET_DISP_NUM" ]]; then
             TARGET_DISP=${disp[0]}
          fi
 
-         if [[ $TARGET_DISP == ${disp[0]} ]]; then
+         if [[ "$TARGET_DISP" == ${disp[0]} ]]; then
             TARGET_GEOM=${disp[2]}
          fi
          IFS=$'\n'
       done
 
-      if [[ -z $TARGET_GEOM ]]; then
+      if [[ -z "$TARGET_GEOM" ]]; then
          echo -e "ERROR: Something went wrong and display geometry was not found\n"
          sm_cry
          exit 1
       else
-         _maim -g $TARGET_GEOM $IMGLOC
+         _maim -g "$TARGET_GEOM" "$IMGLOC"
          wait
          check_img "$IMGLOC"
       fi

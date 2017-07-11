@@ -21,10 +21,10 @@
 # want with this script.
 
 launcher="dmenu" # dmenu/rofi
-character_list="./special_character_list"
+character_list="$HOME/gitland/scripts/special_character_list"
 sep=":"
 
-cd $(dirname $0)
+cd "$(dirname "$0")" || exit
 
 if [ $# -gt 0 ]; then
    if [ "$1" == "-d" ]; then
@@ -36,7 +36,7 @@ fi
 
 
 if [ "$launcher" == "dmenu" ]; then
-   if !(command -v dmenu 2>/dev/null); then
+   if ! (command -v dmenu 2>/dev/null); then
       echo "dmenu not installed, trying rofi..."
       if command -v rofi 2>/dev/null; then
          launcher=rofi
@@ -48,7 +48,7 @@ if [ "$launcher" == "dmenu" ]; then
 fi
 
 if [ "$launcher" == "rofi" ]; then
-   if !(command -v rofi 2>/dev/null); then
+   if ! (command -v rofi 2>/dev/null); then
       echo "dmenu not installed, trying dmenu..."
       if command -v dmenu 2>/dev/null; then
          launcher=dmenu
@@ -61,21 +61,21 @@ fi
 
 
 _rofi () {
-      rofi -dmenu -sync -p "(symbols): " $@
+      rofi -dmenu -sync -p "symbols:"
 }
 
 _dmenu () {
-   dmenu -l 10 $@
+   dmenu -l 10 -p "symbols:"
 }
 
 
 if [ "$launcher" == "dmenu" ]; then
-   selected_string=$(cat $character_list | _dmenu)
+   selected_string=$(_dmenu < "$character_list")
 elif [ "$launcher" == "rofi" ]; then
-   selected_string=$(cat $character_list | _rofi)
+   selected_string=$(_rofi < "$character_list")
 fi
 
-selected_symbol=$(echo $selected_string | cut -d $sep -f 2 )
+selected_symbol=$(cut -d "$sep" -f 2 <<< "$selected_string")
 #trim whitespace
 selected_symbol=${selected_symbol// }
 
