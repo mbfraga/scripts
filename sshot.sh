@@ -106,7 +106,10 @@ function _maim() {
    if [[ ! $DELAY = true ]]; then
       maim "$@"
    else
-      maim -d "$DELAY_TIME" "$@"
+#      maim -d "$DELAY_TIME" "$@"
+#      if hash notify-send.sh 2>/dev/null; then
+#         notid=$(notify-send.sh --print-id sshot "Screenshot in ${DELAY_TIME}s...")
+      fi
    fi
    if [[ $? -eq 1 ]]; then
       echo "Error in maim. In most cases, it just means the selection was cancelled (which is normal behavior)."
