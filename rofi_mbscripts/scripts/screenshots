@@ -23,7 +23,7 @@ function upload() {
    if [[ ! -z $1 ]]; then
       #p=1 == long url
       #sunset=432000 kill screenshot after 5 days
-      $(curl -F c=@${1} -F p=1 sunset=432000 https://ptpb.pw &>/tmp/curl.progress)
+      curl -F c=@${1} -F p=1 sunset=432000 https://ptpb.pw &>/tmp/curl.progress
       wait
       url=$(tail -n3 /tmp/curl.progress | grep "^url: "| cut -c6-)
       regex='(https?|http)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
