@@ -1,9 +1,9 @@
 #!/bin/bash
 
-MSG="<span>enter:    take screenshot."
-MSG="${MSG}alt+d:    add delay."
-MSG="${MSG}alt+u:    toggle upload."
-MSG="${MSG}</span>"
+MSG=$(echo -e "<span>enter:    take screenshot.")
+MSG="${MSG}$(echo -e "alt+d:    add delay.")"
+MSG="${MSG}$(echo -e "alt+u:    toggle upload.")"
+MSG="${MSG}$(echo -e "</span>")"
 PROMPT="sshot:"
 
 if [[ -z $UPLOAD ]]; then
@@ -11,9 +11,9 @@ if [[ -z $UPLOAD ]]; then
 fi
 
 if $UPLOAD; then
-   PROMPT="sshot(upload):"
+   PROMPT="sshot (upload):"
 else
-   PROMPT="sshot(noupload):"
+   PROMPT="sshot (noupload):"
 fi
 
 if [[ -z $DELAY ]]; then
@@ -37,6 +37,10 @@ esac
 
 #echo $COMMAND
 
+function _launcher () {
+   $COMMAND -p "$PROMPT" -mesg "$MSG"
+}
+
 
 function toggle_upload () {
    if $UPLOAD; then
@@ -52,15 +56,12 @@ function toggle_upload () {
 function add_delay () {
    case $LAUNCHER in
       "rofi")
-      COMMAND='rofi -dmenu -p sshot_add_delay: -markup'
-      ;;
-      "dmenu")
-      COMMAND="dmenu -p 'sshot add delay:'"
+         DCOMMAND='rofi -dmenu -markup'
       ;;
       *)
    esac
 
-   delay=$(echo -e "5\n4\n3\n2\n1" | $COMMAND)
+   delay=$(echo -e "5\n4\n3\n2\n1" | $DCOMMAND -p "sshot (add delay)")
    exitc=$?
 
    if [[ $exitc -eq 1 ]]; then
@@ -89,13 +90,11 @@ function show_options () {
 
 function main_function () {
    if $UPLOAD; then
-      PROMPT="sshot(upload):"
+      PROMPT="sshot (upload):"
    else
-      PROMPT="sshot(noupload):"
+      PROMPT="sshot (noupload):"
    fi
-   TCOMMAND="$COMMAND -p $PROMPT"
-   echo $TCOMMAND
-   SEL="$(show_options | $TCOMMAND )"
+   SEL="$(show_options | _launcher )"
    EXIT=$?
 }
 
@@ -110,9 +109,9 @@ function _sshot () {
 SEL=""
 EXIT=1
 while true; do
-   echo $SEL
-   echo $EXIT
-   echo $UPLOAD
+   #echo $SEL
+   #echo $EXIT
+   #echo $UPLOAD
    main_function
    if [[ $EXIT -eq 1 ]]; then
       break
@@ -125,8 +124,8 @@ while true; do
    elif [[ $EXIT -eq 10 ]]; then
       DELAY=$(add_delay)
    elif [[ $EXIT -eq 0 ]]; then
-      echo "sel: $SEL"
-      echo "upload: $UPLOAD"
+      #echo "sel: $SEL"
+      #echo "upload: $UPLOAD"
       _sshot $SEL
       break
    fi

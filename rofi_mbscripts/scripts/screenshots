@@ -1,22 +1,30 @@
 #!/bin/bash
 
-MSG="alt+u to upload"
+MSG=$(echo -e "<span>enter to open, ")
+MSG="$MSG$(echo -e "alt+u to upload, ")"
+MSG="$MSG$(echo -e "alt+p to preview. ")"
+MSG="$MSG$(echo -e "</span>")"
 PROMPT="screenshots:"
 SCREENSHOT_DIRECTORY=~/Pictures/screenshots/
 IMAGE_VIEWER=nomacs
+SELECTED_ROW=0
 
 INDEX=0
 echo "$LAUNCHER"
 
 case $LAUNCHER in
    "rofi")
-   COMMAND="rofi -dmenu -p $PROMPT -format i;s -kb-custom-1 alt+u -kb-custom-2 alt+p"
+   COMMAND="rofi -dmenu -format i;s -kb-custom-1 alt+u -kb-custom-2 alt+p"
    ;;
    "dmenu")
    COMMAND='dmenu'
    ;;
    *)
 esac
+
+function _launcher () {
+   $COMMAND -selected-row $SELECTED_ROW -p "$PROMPT" -mesg "$MSG" 
+}
 
 # upload image and notify via notify-send
 function upload() {
@@ -35,7 +43,7 @@ function upload() {
          notify-send "Upload failed... /tmp/curl.progress"
          exit 1
       else
-         notify-send "Screenshot taken" "${url}" && \
+         notify-send "Screenshot uploaded" "${url}" && \
          echo -n "$url" | xclip -i -selection primary && \
          echo -n "$url" | xclip -i -selection clipboard
       fi
@@ -49,10 +57,12 @@ function list_screenshots () {
 }
 
 function main_function () {
-   if [[ $LAUNCHER == rofi ]];then
-      TCOMMAND="$COMMAND -selected-row $INDEX"
+   if [[ $LAUNCHER == "rofi" && $INDEX -gt 0 ]];then
+      SELECTED_ROW=$INDEX
+   else
+      SELECTED_ROW=0
    fi
-   ANSWER=$( list_screenshots | tac | $TCOMMAND)
+   ANSWER=$( list_screenshots | tac | _launcher ) 
    EXIT=$?
    INDEX=$(echo $ANSWER | cut -d ";" -f 1)
    TARGET=$(echo $ANSWER | cut -d ";" -f 2)
@@ -60,6 +70,9 @@ function main_function () {
 
 while true; do
    main_function
+   echo ANSWER: $ANSWER
+   echo INDEX: $INDEX
+   echo TARGET: $TARGET
    if [[ $EXIT -eq 0 ]]; then
       if [[ ! -z "$TARGET" ]]; then
          $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$TARGET"
@@ -78,5 +91,6 @@ while true; do
       EXIT=1
 
    fi
+
 done
 
