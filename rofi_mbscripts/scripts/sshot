@@ -1,0 +1,134 @@
+#!/bin/bash
+
+MSG="<span>enter:    take screenshot."
+MSG="${MSG}alt+d:    add delay."
+MSG="${MSG}alt+u:    toggle upload."
+MSG="${MSG}</span>"
+PROMPT="sshot:"
+
+if [[ -z $UPLOAD ]]; then
+   UPLOAD=false
+fi
+
+if $UPLOAD; then
+   PROMPT="sshot(upload):"
+else
+   PROMPT="sshot(noupload):"
+fi
+
+if [[ -z $DELAY ]]; then
+DELAY="0"
+fi
+
+#echo "$LAUNCHER"
+#echo "$MSG"
+
+case $LAUNCHER in
+   "rofi")
+   COMMAND="rofi -dmenu -markup"
+   COMMAND="$COMMAND -kb-custom-1 alt+d"
+   COMMAND="$COMMAND -kb-custom-2 alt+u"
+   ;;
+   "dmenu")
+   COMMAND="dmenu"
+   ;;
+   *)
+esac
+
+#echo $COMMAND
+
+
+function toggle_upload () {
+   if $UPLOAD; then
+      return 0
+   elif ! $UPLOAD; then
+      return 1
+   else
+      return 0
+   fi
+}
+
+
+function add_delay () {
+   case $LAUNCHER in
+      "rofi")
+      COMMAND='rofi -dmenu -p sshot_add_delay: -markup'
+      ;;
+      "dmenu")
+      COMMAND="dmenu -p 'sshot add delay:'"
+      ;;
+      *)
+   esac
+
+   delay=$(echo -e "5\n4\n3\n2\n1" | $COMMAND)
+   exitc=$?
+
+   if [[ $exitc -eq 1 ]]; then
+      echo 0
+   else
+      echo $delay
+   fi
+}
+
+
+function show_options () {
+   PREPEND=""
+   if [[ $DELAY -gt 0 ]]; then
+      PREPEND="${PREPEND}-d $DELAY "
+   fi
+
+   IFS=$'\n'
+   disps=($(xrandr | grep " connected" | awk {'printf ("%s %s %s\n", $1,$3,$4)'}))
+   echo "${PREPEND}all"
+   echo "${PREPEND}selection"
+   for i in ${!disps[@]}
+   do
+      echo $PREPEND$(printf "%s" ${disps[$i]} | awk {'printf ("%s\n", $1)'})
+   done
+}
+
+function main_function () {
+   if $UPLOAD; then
+      PROMPT="sshot(upload):"
+   else
+      PROMPT="sshot(noupload):"
+   fi
+   TCOMMAND="$COMMAND -p $PROMPT"
+   echo $TCOMMAND
+   SEL="$(show_options | $TCOMMAND )"
+   EXIT=$?
+}
+
+function _sshot () {
+   if $UPLOAD; then
+      SSHOT_UPLOAD=true  sshot $1
+   else
+      SSHOT_UPLOAD=false sshot $1
+   fi
+}
+
+SEL=""
+EXIT=1
+while true; do
+   echo $SEL
+   echo $EXIT
+   echo $UPLOAD
+   main_function
+   if [[ $EXIT -eq 1 ]]; then
+      break
+   elif [[ $EXIT -eq 11 ]]; then
+      if ! $UPLOAD; then
+         UPLOAD=true
+      else
+         UPLOAD=false
+      fi
+   elif [[ $EXIT -eq 10 ]]; then
+      DELAY=$(add_delay)
+   elif [[ $EXIT -eq 0 ]]; then
+      echo "sel: $SEL"
+      echo "upload: $UPLOAD"
+      _sshot $SEL
+      break
+   fi
+done
+

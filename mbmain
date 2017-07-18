@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ROOT_PATH="$( cd "$( dirname "$0" )" && pwd )"
+
+$ROOT_PATH/rofi_mbscripts/mbmain.sh

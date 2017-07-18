@@ -1,0 +1,82 @@
+#!/bin/bash
+
+MSG="alt+u to upload"
+PROMPT="screenshots:"
+SCREENSHOT_DIRECTORY=~/Pictures/screenshots/
+IMAGE_VIEWER=nomacs
+
+INDEX=0
+echo "$LAUNCHER"
+
+case $LAUNCHER in
+   "rofi")
+   COMMAND="rofi -dmenu -p $PROMPT -format i;s -kb-custom-1 alt+u -kb-custom-2 alt+p"
+   ;;
+   "dmenu")
+   COMMAND='dmenu'
+   ;;
+   *)
+esac
+
+# upload image and notify via notify-send
+function upload() {
+   if [[ ! -z $1 ]]; then
+      #p=1 == long url
+      #sunset=432000 kill screenshot after 5 days
+      $(curl -F c=@${1} -F p=1 sunset=432000 https://ptpb.pw &>/tmp/curl.progress)
+      wait
+      url=$(tail -n3 /tmp/curl.progress | grep "^url: "| cut -c6-)
+      regex='(https?|http)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
+      echo "URL: $url"
+      if [[ ! $url =~ $regex ]]; then
+         echo "Upload failed..."
+         echo -e "Curl output:\n------------\n"
+         cat /tmp/curl.progress
+         notify-send "Upload failed... /tmp/curl.progress"
+         exit 1
+      else
+         notify-send "Screenshot taken" "${url}" && \
+         echo -n "$url" | xclip -i -selection primary && \
+         echo -n "$url" | xclip -i -selection clipboard
+      fi
+   fi
+}
+
+function list_screenshots () {
+   for entry in "$SCREENSHOT_DIRECTORY"/*; do
+      printf '%s\n' "${entry##*/}"
+   done
+}
+
+function main_function () {
+   if [[ $LAUNCHER == rofi ]];then
+      TCOMMAND="$COMMAND -selected-row $INDEX"
+   fi
+   ANSWER=$( list_screenshots | tac | $TCOMMAND)
+   EXIT=$?
+   INDEX=$(echo $ANSWER | cut -d ";" -f 1)
+   TARGET=$(echo $ANSWER | cut -d ";" -f 2)
+}
+
+while true; do
+   main_function
+   if [[ $EXIT -eq 0 ]]; then
+      if [[ ! -z "$TARGET" ]]; then
+         $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$TARGET"
+      fi
+      break
+   elif [[ $EXIT -eq 1 ]]; then
+      break
+   elif [[ $EXIT -eq 10 ]]; then
+      echo "Uploading $SCREENSHOT_DIRECTORY/$TARGET"
+      IMGLOC=$SCREENSHOT_DIRECTORY$TARGET
+      upload "${IMGLOC}"
+      break
+   elif [[ $EXIT -eq 11 ]]; then
+      echo "Previewing $SCREENSHOT_DIRECTORY/$TARGET"
+      $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$TARGET"
+      EXIT=1
+
+   fi
+done
+

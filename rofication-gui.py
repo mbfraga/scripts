@@ -112,7 +112,7 @@ def open_url(notification):
     proc = subprocess.Popen(open_url_command, stdout=subprocess.PIPE)
     exit_code = proc.wait()
 
-    if exit_code != 1:
+    if exit_code == 1:
         rofi_message("Error: could not open : `" + message + "'")
 
 

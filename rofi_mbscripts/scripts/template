@@ -1,0 +1,17 @@
+#!/bin/bash
+
+MSG=""
+PROMPT="template:"
+
+echo "$LAUNCHER"
+
+case $LAUNCHER in
+   "rofi")
+   COMMAND='rofi -dmenu -p $PROMPT -e $MSG'
+   ;;
+   "dmenu")
+   COMMAND='dmenu'
+   ;;
+   *)
+esac
+
