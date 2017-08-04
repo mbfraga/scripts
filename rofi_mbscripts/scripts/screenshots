@@ -17,7 +17,9 @@ MSG="$MSG $(echo -e "$BIND3 to rename.")"
 PROMPT="screenshots:"
 ANSWER=""
 SEL=""
-FILTER=""
+if [[ $# -gt 0 ]];then
+   FILTER="$1"
+fi
 INDEX=0
 if [[ -z "$LAUNCHER" ]];then
    LAUNCHER="rofi"
@@ -86,13 +88,14 @@ function main_function () {
 }
 
 while true; do
+
    main_function
    echo ANSWER: $ANSWER
    echo INDEX: $INDEX
    echo SEL: $SEL
    if [[ $EXIT -eq 0 ]]; then
       if [[ ! -z "$SEL" ]]; then
-         $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$SEL"
+         xdg-open "$SCREENSHOT_DIRECTORY/$SEL"
       fi
       break
    elif [[ $EXIT -eq 1 ]]; then

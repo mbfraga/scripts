@@ -2,6 +2,7 @@
 
 # application variables
 ROOT_PATH="$( cd "$( dirname "$0" )" && pwd )"
+
 if [[ -z "$ENABLED_PATH" ]]; then
    ENABLED_PATH="$ROOT_PATH/enabled"
 fi

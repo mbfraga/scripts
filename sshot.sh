@@ -23,17 +23,20 @@ MAGENTA="0.7,0.3,0.7,1.0"
 
 # Settings
 DEST=~/Pictures/screenshots/
-IMGNAME="sshot-`date +'%Y-%m-%d_%H:%M:%S'`.png"
-IMGLOC=$DEST$IMGNAME
 DELAY=false
 SELECTION_SETTINGS="--bordersize=3 --color=$MAGENTA"
 SCREENSHOT_TYPE=""
 
-if [[ -z $SSHOT_UPLOAD ]]; then
+if [[ -z "$IMGNAME" ]];then
+   IMGNAME="sshot-`date +'%Y-%m-%d_%H:%M:%S'`.png"
+fi
+IMGLOC=$DEST$IMGNAME
+
+if [[ -z "$SSHOT_UPLOAD" ]]; then
    SSHOT_UPLOAD=true
 fi
 
-if [[ -z $ROFI_PLUGIN ]]; then
+if [[ -z "$ROFI_PLUGIN" ]]; then
    ROFI_PLUGIN=false
 fi
 
