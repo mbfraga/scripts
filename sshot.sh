@@ -23,7 +23,7 @@ MAGENTA="0.7,0.3,0.7,1.0"
 
 # Settings
 DEST=~/Pictures/screenshots/
-IMGNAME="sshot-`date +'%d-%m-%Y_%H:%M:%S'`.png"
+IMGNAME="sshot-`date +'%Y-%m-%d_%H:%M:%S'`.png"
 IMGLOC=$DEST$IMGNAME
 DELAY=false
 SELECTION_SETTINGS="--bordersize=3 --color=$MAGENTA"

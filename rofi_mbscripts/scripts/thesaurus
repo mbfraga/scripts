@@ -12,7 +12,7 @@ QUERY=""
 
 # launcher variables
 MSG="Dictionary"
-PROMPT="define:"
+PROMPT="thesaurus:"
 ANSWER=""
 SEL=""
 INDEX=0
@@ -27,7 +27,7 @@ function _launcher () {
    #-kb-custom-1 "$BIND1" -kb-custom-2 "$BIND2"
 }
 
-function define () {
+function thesaurus () {
    sdcv -n -u "Moby Thesaurus II" $@ | tail -n +5
 }
 
@@ -40,7 +40,7 @@ function main_function () {
    if [[ $# -lt 1 ]]; then
       ANSWER=$(print_listofopts | _launcher)
    else
-      ANSWER=$(define "$@" | _launcher)
+      ANSWER=$(thesaurus "$@" | _launcher)
    fi
 
    EXIT=$?
