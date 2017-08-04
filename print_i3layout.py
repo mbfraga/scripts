@@ -1,4 +1,7 @@
-#!/bin/env python
+#!/bin/env python3
+# Print a semi-formatted layout of your i3 workspaces (including scratchpad,
+# etc)
+
 
 import i3ipc
 

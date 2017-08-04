@@ -1,3 +1,8 @@
 #!/bin/bash
+# prints the list of special characters. I use this as a simple command that
+# can be hooked into st to print special characters/smileys/etc without
+# xdotools
 
-cat $HOME/gitland/scripts/special_character_list
+ROOT_PATH="$( cd "$( dirname "$0" )" && pwd )"
+
+cat $ROOT_PATH/special_character_list

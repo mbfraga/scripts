@@ -1,46 +1,50 @@
 #!/bin/bash
 
-MSG=$(echo -e "<span>enter:    take screenshot.")
-MSG="${MSG}$(echo -e "alt+d:    add delay.")"
-MSG="${MSG}$(echo -e "alt+u:    toggle upload.")"
-MSG="${MSG}$(echo -e "</span>")"
-PROMPT="sshot:"
-
+# user variables
 if [[ -z $UPLOAD ]]; then
    UPLOAD=false
-fi
-
-if $UPLOAD; then
-   PROMPT="sshot (upload):"
-else
-   PROMPT="sshot (noupload):"
 fi
 
 if [[ -z $DELAY ]]; then
 DELAY="0"
 fi
 
-#echo "$LAUNCHER"
-#echo "$MSG"
+# application variables
+BIND1="alt+d"
+BIND2="alt+u"
 
-case $LAUNCHER in
-   "rofi")
-   COMMAND="rofi -dmenu -markup"
-   COMMAND="$COMMAND -kb-custom-1 alt+d"
-   COMMAND="$COMMAND -kb-custom-2 alt+u"
-   ;;
-   "dmenu")
-   COMMAND="dmenu"
-   ;;
-   *)
-esac
+# launcher variables
+MSG=$(echo -e        "enter: take screenshot,")
+MSG="${MSG} $(echo -e "$BIND1: add delay,")"
+MSG="${MSG} $(echo -e "$BIND2: toggle upload.")"
+if $UPLOAD; then
+   PROMPT="sshot (upload):"
+else
+   PROMPT="sshot (noupload):"
+fi
+ANSWER=""
+SEL=""
+FILTER=""
+INDEX=0
+if [[ -z "$LAUNCHER" ]];then
+   LAUNCHER="rofi"
+fi
 
-#echo $COMMAND
 
+# run correct launcher with prompt and help message
 function _launcher () {
-   $COMMAND -p "$PROMPT" -mesg "$MSG"
+   rofi -dmenu -p "$PROMPT" -mesg "$MSG" \
+      -kb-custom-1 "$BIND1" -kb-custom-2 "$BIND2" \
+      -format 'i;f;s' -selected-row $INDEX -filter "$FILTER"
 }
 
+function _sshot () {
+   if $UPLOAD; then
+      SSHOT_UPLOAD=true  sshot $@
+   else
+      SSHOT_UPLOAD=false sshot $@
+   fi
+}
 
 function toggle_upload () {
    if $UPLOAD; then
@@ -52,16 +56,10 @@ function toggle_upload () {
    fi
 }
 
-
 function add_delay () {
-   case $LAUNCHER in
-      "rofi")
-         DCOMMAND='rofi -dmenu -markup'
-      ;;
-      *)
-   esac
-
-   delay=$(echo -e "5\n4\n3\n2\n1" | $DCOMMAND -p "sshot (add delay)")
+   MSG=$(echo -e "Choose delay, or write custom one." )
+   PROMPT=$(echo -e "sshot (add delay):")
+   delay=$(echo -e "5\n4\n3\n2\n1" | rofi -dmenu -p "$PROMPT" -mesg "$MSG")
    exitc=$?
 
    if [[ $exitc -eq 1 ]]; then
@@ -71,8 +69,8 @@ function add_delay () {
    fi
 }
 
-
-function show_options () {
+# function that creates a list for the launcher
+function print_listofopts () {
    PREPEND=""
    if [[ $DELAY -gt 0 ]]; then
       PREPEND="${PREPEND}-d $DELAY "
@@ -94,24 +92,15 @@ function main_function () {
    else
       PROMPT="sshot (noupload):"
    fi
-   SEL="$(show_options | _launcher )"
+   ANSWER="$(print_listofopts | _launcher )"
    EXIT=$?
+   IFS=';' read INDEX FILTER SEL <<< $ANSWER
 }
 
-function _sshot () {
-   if $UPLOAD; then
-      SSHOT_UPLOAD=true  sshot $1
-   else
-      SSHOT_UPLOAD=false sshot $1
-   fi
-}
-
+# run launcher
 SEL=""
 EXIT=1
 while true; do
-   #echo $SEL
-   #echo $EXIT
-   #echo $UPLOAD
    main_function
    if [[ $EXIT -eq 1 ]]; then
       break
@@ -126,7 +115,9 @@ while true; do
    elif [[ $EXIT -eq 0 ]]; then
       #echo "sel: $SEL"
       #echo "upload: $UPLOAD"
-      _sshot $SEL
+      _sshot ${SEL}
+      break
+   else
       break
    fi
 done

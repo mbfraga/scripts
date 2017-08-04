@@ -1,5 +1,7 @@
 #!/bin/bash
 # author mbfraga@gmail.com
+# Wrapper on top of maim that provides a few more functionalities. It can take
+# a screenshot of a specified display.
 
 # dependencies
 #   xrandr

@@ -45,6 +45,12 @@ function enable_script () {
       echo "Script '$1' not found in '$SCRIPTS_PATH'."
       return
    fi
+   if [[ ! -d "$ENABLED_PATH" ]];then
+      mkdir $ENABLED_PATH || {
+         echo "ERROR: could not crate '$ENABLED_PATH'"
+         exit 1
+         }
+   fi
    ln -s "$script_path" "$enabled_path" &&
       echo "Script '$1' enabled."
 }
@@ -71,7 +77,7 @@ else
    else
       if [[ $# -ne 2 ]];then
          echo "ERROR: Incorrect number of arguments"
-         show_help
+         print_help
          exit 1
       fi
 
@@ -81,7 +87,7 @@ else
          disable_script $2
       else
          echo "ERROR: Incorrect command '$1'"
-         show_help
+         print_help
          exit 1
       fi
    fi

@@ -1,29 +1,31 @@
 #!/bin/bash
 
-MSG=$(echo -e "<span>enter to open, ")
-MSG="$MSG$(echo -e "alt+u to upload, ")"
-MSG="$MSG$(echo -e "alt+p to preview. ")"
-MSG="$MSG$(echo -e "</span>")"
-PROMPT="screenshots:"
-SCREENSHOT_DIRECTORY=~/Pictures/screenshots/
+# user variables
 IMAGE_VIEWER=nomacs
-SELECTED_ROW=0
 
+# application variables
+SCREENSHOT_DIRECTORY=~/Pictures/screenshots/
+BIND1="alt+u"
+BIND2="alt+p"
+
+# launcher variables
+MSG=$(echo -e "enter to open,")
+MSG="$MSG $(echo -e "$BIND1 to upload,")"
+MSG="$MSG $(echo -e "$BIND2 to preview.")"
+PROMPT="screenshots:"
+ANSWER=""
+SEL=""
+FILTER=""
 INDEX=0
-echo "$LAUNCHER"
+if [[ -z "$LAUNCHER" ]];then
+   LAUNCHER="rofi"
+fi
 
-case $LAUNCHER in
-   "rofi")
-   COMMAND="rofi -dmenu -format i;s -kb-custom-1 alt+u -kb-custom-2 alt+p"
-   ;;
-   "dmenu")
-   COMMAND='dmenu'
-   ;;
-   *)
-esac
 
 function _launcher () {
-   $COMMAND -selected-row $SELECTED_ROW -p "$PROMPT" -mesg "$MSG" 
+   rofi -dmenu -p "$PROMPT" -mesg "$MSG" \
+      -kb-custom-1 "$BIND1" -kb-custom-2 "$BIND2" \
+      -format 'i;f;s' -selected-row $INDEX -filter "$FILTER"
 }
 
 # upload image and notify via notify-send
@@ -57,39 +59,34 @@ function list_screenshots () {
 }
 
 function main_function () {
-   if [[ $LAUNCHER == "rofi" && $INDEX -gt 0 ]];then
-      SELECTED_ROW=$INDEX
-   else
-      SELECTED_ROW=0
-   fi
    ANSWER=$( list_screenshots | tac | _launcher ) 
    EXIT=$?
-   INDEX=$(echo $ANSWER | cut -d ";" -f 1)
-   TARGET=$(echo $ANSWER | cut -d ";" -f 2)
+   IFS=';' read INDEX FILTER SEL <<< $ANSWER
 }
 
 while true; do
    main_function
    echo ANSWER: $ANSWER
    echo INDEX: $INDEX
-   echo TARGET: $TARGET
+   echo SEL: $SEL
    if [[ $EXIT -eq 0 ]]; then
-      if [[ ! -z "$TARGET" ]]; then
-         $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$TARGET"
+      if [[ ! -z "$SEL" ]]; then
+         $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$SEL"
       fi
       break
    elif [[ $EXIT -eq 1 ]]; then
       break
    elif [[ $EXIT -eq 10 ]]; then
-      echo "Uploading $SCREENSHOT_DIRECTORY/$TARGET"
-      IMGLOC=$SCREENSHOT_DIRECTORY$TARGET
+      echo "Uploading $SCREENSHOT_DIRECTORY/$SEL"
+      IMGLOC=$SCREENSHOT_DIRECTORY$SEL
       upload "${IMGLOC}"
       break
    elif [[ $EXIT -eq 11 ]]; then
-      echo "Previewing $SCREENSHOT_DIRECTORY/$TARGET"
-      $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$TARGET"
+      echo "Previewing $SCREENSHOT_DIRECTORY/$SEL"
+      $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$SEL"
       EXIT=1
-
+   else
+      break
    fi
 
 done

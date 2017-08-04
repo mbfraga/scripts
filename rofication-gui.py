@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Script that checks /tmp/rofi_notification_daemon for notifications that were
+# logged by eventd. These are displayed via rofi, and you can act on them.
 import sys
 import re
 import struct
