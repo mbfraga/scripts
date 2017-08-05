@@ -12,7 +12,7 @@ BIND3="alt+r"
 # launcher variables
 MSG=$(echo -e "enter to open,")
 MSG="$MSG $(echo -e "$BIND1 to upload,")"
-MSG="$MSG $(echo -e "$BIND2 to preview.")"
+MSG="$MSG $(echo -e "$BIND2 to preview,")"
 MSG="$MSG $(echo -e "$BIND3 to rename.")"
 PROMPT="screenshots:"
 ANSWER=""
@@ -101,14 +101,19 @@ while true; do
    elif [[ $EXIT -eq 1 ]]; then
       break
    elif [[ $EXIT -eq 10 ]]; then
-      echo "Uploading $SCREENSHOT_DIRECTORY/$SEL"
-      IMGLOC=$SCREENSHOT_DIRECTORY$SEL
-      upload "${IMGLOC}"
-      break
+       if [[ ! -z "$SEL" ]]; then
+         echo "Uploading $SCREENSHOT_DIRECTORY/$SEL"
+         IMGLOC=$SCREENSHOT_DIRECTORY$SEL
+         upload "${IMGLOC}"
+         break
+      fi
    elif [[ $EXIT -eq 11 ]]; then
-      echo "Previewing $SCREENSHOT_DIRECTORY/$SEL"
-      $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$SEL"
-      EXIT=1
+       if [[ ! -z "$SEL" ]]; then
+         echo "Previewing $SCREENSHOT_DIRECTORY/$SEL"
+         $IMAGE_VIEWER "$SCREENSHOT_DIRECTORY/$SEL"
+         EXIT=1
+         
+      fi
    elif [[ $EXIT -eq 12 ]]; then
       newname=""
       echo "Renaming $SCREENSHOT_DIRECTORY/$SEL"
