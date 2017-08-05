@@ -10,8 +10,8 @@ if [[ -z "$SCRIPTS_PATH" ]]; then
    SCRIPTS_PATH="$ROOT_PATH/scripts/"
 fi
 
-echo "ENABLED_PATH: $ENABLED_PATH"
-echo "SCRIPTS_PATH: $SCRIPTS_PATH"
+#echo "ENABLED_PATH: $ENABLED_PATH"
+#echo "SCRIPTS_PATH: $SCRIPTS_PATH"
 
 function print_help () {
 
