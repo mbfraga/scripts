@@ -9,8 +9,8 @@
 #BIND2="alt+p"
 
 # launcher variables
-MSG="Search on youtube."
-PROMPT="youtube:"
+MSG="Search on google."
+PROMPT="google:"
 ANSWER=""
 SEL=""
 FILTER=""
@@ -40,7 +40,7 @@ function main_function () {
    IFS=";" read -r INDEX FILTER SEL <<< "$ANSWER"
 }
 
-youtube() {
+google() {
 
    if [[ $# -lt 1 ]]; then
       return 1
@@ -49,9 +49,9 @@ youtube() {
    wlist=( $@ )
    search=""
    for word in  ${wlist[@]}; do
-      search="$search+$word"
+      search="$search%20$word"
    done
-   url="https://www.youtube.com/results?search_query=$search"
+   url="https://www.google.com/search?q=$search"
    echo "Opening url in browser: $url"
    xdg-open "$url" &
    return 0
@@ -68,7 +68,7 @@ while true; do
    echo "EXIT: $EXIT"
    if [[ $EXIT -eq 0 ]]; then
       # This is the case where enter is pressed.
-      youtube "$FILTER" || break
+      google "$FILTER" || break
       break
    elif [[ $EXIT -eq 1 ]]; then
       # This is the case where rofi es escaped (should EXIT)

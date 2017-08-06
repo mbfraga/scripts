@@ -63,7 +63,8 @@ function rename_screenshot() {
       MSG2=$(echo -e "Rename $SEL. Write new name and press enter.")
       PROMPT2=$(echo -e "screenshots (rename):")
       NEWSEL=${SEL%.*}
-      newname=$(echo -e "" | rofi -dmenu -p "$PROMPT2" -mesg "$MSG2" -filter "$1")
+      newname=$(echo -e "" | rofi -dmenu -p "$PROMPT2" -mesg "$MSG2" \
+                                 -format 'f' -filter "$1")
       exitc=$?
       if [[ $exitc -eq 1 ]]; then
          echo "" 
@@ -121,8 +122,14 @@ while true; do
       extension="${SEL##*.}"
       newname=$(rename_screenshot "$filename")
       if [[ ! -z "$newname" ]]; then
-         echo "    $SEL to $newname.$extension"
-         mv "$SCREENSHOT_DIRECTORY/$SEL" "$SCREENSHOT_DIRECTORY/$newname.$extension"
+         target="$SCREENSHOT_DIRECTORY/$newname.$extension"
+         if [[ -e "$target" ]]; then
+            rofi -e "File '$target' exists, can't rename '$SEL' to '$newname'"
+         else
+            echo "    $SEL to $newname.$extension"
+            mv "$SCREENSHOT_DIRECTORY/$SEL" \
+               "$SCREENSHOT_DIRECTORY/$newname.$extension"
+         fi
 
       fi
    else

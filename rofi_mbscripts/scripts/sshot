@@ -48,6 +48,13 @@ function _sshot () {
    else
       SSHOT_UPLOAD=false IMGNAME="$IMGNAME" sshot $@
    fi
+
+   # if there is an error in sshot, or if sshot is cancelled, send 1 to stdout
+   if [[ $? -ne 0 ]]; then
+      return 1
+   else
+      return 0
+   fi
 }
 
 function toggle_upload () {
@@ -118,9 +125,12 @@ while true; do
       fi
    elif [[ $EXIT -eq 12 ]]; then
       echo "Interactive mode"
-      _sshot ${SEL}
-      wait
-      $ROOT_PATH/screenshots "$IMGNAME"
+      if _sshot ${SEL}; then
+         wait
+         $ROOT_PATH/screenshots "$IMGNAME"
+      else
+         echo "Screenoshot was cancelled..."
+      fi
       break
    elif [[ $EXIT -eq 0 ]]; then
       #echo "sel: $SEL"
