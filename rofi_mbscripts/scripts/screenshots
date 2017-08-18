@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # user variables
-IMAGE_VIEWER=nomacs
+SCREENSHOT_DIRECTORY=~/Pictures/screenshots/
 
 # application variables
-SCREENSHOT_DIRECTORY=~/Pictures/screenshots/
 BIND1="alt+u"
 BIND2="alt+p"
 BIND3="alt+r"
