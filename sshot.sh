@@ -135,6 +135,16 @@ function parseargs () {
          SCREENSHOT_TYPE="all"
       elif [[ "$1" == "sel" ]] || [[ $1 == "selection" ]]; then
          SCREENSHOT_TYPE="sel"
+      elif [[ "$1" == "list" ]]; then
+         echo "all"
+         echo "selection"
+         IFS=$'\n'
+         disps=($(xrandr | grep " connected" | awk {'printf ("%s %s %s\n", $1,$3,$4)'}))
+         for i in ${!disps[@]}
+         do
+            echo $PREPEND$(printf "%s" ${disps[$i]} | awk {'printf ("%s\n", $1)'})
+         done
+         exit 0
       elif [[ $1 =~ $re ]]; then
          SCREENSHOT_TYPE="dispnum"
          TARGET_DISP_NUM=$1
