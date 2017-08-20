@@ -1,6 +1,5 @@
 #!/bin/env python3
 
-import sys
 import mbrofi
 
 # user variables
@@ -8,53 +7,64 @@ import mbrofi
 # application variables
 
 # launcher variables
-MSG = "Search on youtube."
-PROMPT = "youtube:"
-ANSWER=""
-SEL=""
-FILTER=""
-INDEX=0
-BINDINGS=[]
+msg = "Search on youtube."
+prompt = "youtube:"
+answer=""
+sel=""
+filt=""
+index=0
+bindings=[]
 
 # run correct launcher with prompt and help message
 launcher_args = {}
-launcher_args['prompt'] = PROMPT
-launcher_args['mesg'] = MSG
-launcher_args['filter'] = FILTER
-launcher_args['bindings'] = BINDINGS
-launcher_args['index'] = INDEX
+launcher_args['prompt'] = prompt
+launcher_args['mesg'] = msg
+launcher_args['filter'] = filt
+launcher_args['bindings'] = bindings
+launcher_args['index'] = index
 
 
-# function that creates a list for the launcher
 def list_entries():
+    """Return entries to be displayed in rofi."""
     return([''])
 
 
 def youtube(query):
+    """Generate youtube search url from query"""
     query.replace(" ", "+")
     url = "https://www.youtube.com/results?search_query=" + query.strip()
     print("Opening url in browser: " + query)
     mbrofi.xdg_open(url)
 
 
-# main function that calls rofi with the settings and entries
-def main_function():
-    ANSWER, EXIT = mbrofi.rofi(list_entries(), launcher_args)
-    if EXIT == 1:
+def main_rofi_function(launcher_args):
+    """Call main rofi function and return the selection, filter, selection
+    index, and exit code. Don't return any of these in case of rofi being 
+    escaped.
+    """
+    answer, exit = mbrofi.rofi(list_entries(), launcher_args)
+    if exit == 1:
         return(False, False, False, 1)
-    INDEX, FILTER, SEL = ANSWER.strip().split(';')
-    return(INDEX, FILTER, SEL, EXIT)
+    index, filt, sel = answer.strip().split(';')
+    return(index, filt, sel, exit)
 
-while True:
-    INDEX, FILTER, SEL, EXIT = main_function()
-    launcher_args['filter'] = FILTER
-    launcher_args['index'] = INDEX
-    if (EXIT == 0):
-        # This is the case where enter is pressed
-        youtube(FILTER)
-        break
-    elif (EXIT == 1):
-        # This is the case where rofi is escaped (should EXIT)
-        break
-    else:
-        break
+
+def main(launcher_args):
+    """Main function."""
+    while True:
+        index, filt, sel, exit = main_rofi_function(launcher_args)
+        launcher_args['filter'] = filt
+        launcher_args['index'] = index
+        if (exit == 0):
+            # this is the case where enter is pressed
+            youtube(filt)
+            break
+        elif (exit == 1):
+            # this is the case where rofi is escaped (should exit)
+            break
+        else:
+            break
+
+
+if __name__ == "__main__":
+    main(launcher_args)
