@@ -5,7 +5,8 @@ import sys
 from subprocess import Popen, PIPE
 from datetime import datetime, date, time
 
-import mbrofi
+from mbrofi import rofi
+import screenshots
 
 # user variables
 upload=False
@@ -96,7 +97,7 @@ def add_delay(delay_binding):
     local_launcher_args['prompt'] = "sshot (add delay):"
     local_launcher_args['format'] = "s"
     local_launcher_args['bindings'] = [delay_binding]
-    delay, exit = mbrofi.rofi(["5","4","3","2","1","0"], local_launcher_args)
+    delay, exit = rofi(["5","4","3","2","1","0"], local_launcher_args)
     if exit == 1:
         print("sshot.py delay menu was escaped, and right now" \
               + " this is set to abort the top script. This is expected " \
@@ -119,7 +120,7 @@ def main_rofi_function(launcher_args, delay):
     index, and exit code. Don't return any of these in case of rofi being 
     escaped.
     """
-    answer, exit = mbrofi.rofi(list_entries(delay=delay), launcher_args)
+    answer, exit = rofi(list_entries(delay=delay), launcher_args)
     if exit == 1:
         return(False, False, False, 1)
     index, filt, sel = answer.strip().split(';')
@@ -151,7 +152,8 @@ def main(launcher_args, upload, delay):
             print("Interactive Mode")
             imgname = sshot(opts=sel.split(" "), upload=upload)
             if imgname:
-                mbrofi.run_mbscript('screenshots.py', [imgname])
+                screenshots.main()
+                break
             break
         else:
             break

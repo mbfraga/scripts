@@ -2,7 +2,6 @@
 
 import os
 import sys
-import requests
 from subprocess import Popen, PIPE
 
 import mbrofi
@@ -48,18 +47,19 @@ launcher_args['index'] = index
 
 # upload image and notify via notify-send
 def upload(filename):
+    from requests import Session, adapters, exceptions
     """Upload image to ptpb.pw and notify via notify-send."""
     filepath = os.path.join(SCREENSHOT_DIRECTORY, filename)
     url = "https://ptpb.pw"
     files = {'c': open(filepath, 'rb')}
     values = {'p':'1', 'sunset':'432000'}
 
-    s = requests.Session()
-    a = requests.adapters.HTTPAdapter(max_retries=3)
+    s = Session()
+    a = adapters.HTTPAdapter(max_retries=3)
     s.mount('https://', a)
     try:
         rh = s.get(url)
-    except requests.exceptions.RequestException as e:
+    except exceptions.RequestException as e:
         print("Error: Failed to connect to " + url)
         mbrofi.notify("Screenshot:", 
                       "Screenshot " + filename + "could not be uploaded."
