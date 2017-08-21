@@ -32,9 +32,12 @@ def list_entries():
 def youtube(query):
     """Generate youtube search url from query"""
     query.replace(" ", "+")
-    url = "https://www.youtube.com/results?search_query=" + query.strip()
-    print("Opening url in browser: " + query)
-    mbrofi.xdg_open(url)
+    if query:
+        url = "https://www.youtube.com/results?search_query=" + query.strip()
+        print("Opening url in browser: " + query)
+        mbrofi.xdg_open(url)
+    else:
+        print("Empty query.")
 
 
 def main_rofi_function(launcher_args):

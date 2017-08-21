@@ -32,10 +32,13 @@ def list_entries():
 def amazon(query):
     """Generate amazon search url from query"""
     query.replace(" ", "+")
-    url="https://www.amazon.com/s?url=search-alias%3Daps&field-keywords=" \
-            + query
-    print("Opening url in browser: " + query)
-    mbrofi.xdg_open(url)
+    if query:
+        url="https://www.amazon.com/s?url=search-alias%3Daps&field-keywords=" \
+                + query
+        print("Opening url in browser: " + query)
+        mbrofi.xdg_open(url)
+    else:
+        print("Empty query.")
 
 
 def main_rofi_function(launcher_args):

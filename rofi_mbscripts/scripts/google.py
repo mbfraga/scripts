@@ -32,9 +32,12 @@ def list_entries():
 def google(query):
     """Generate google search url from query"""
     query.replace(" ", "%20")
-    url = "https://www.google.com/search?q=" + query.strip()
-    print("Opening url in browser: " + query)
-    mbrofi.xdg_open(url)
+    if query:
+        url = "https://www.google.com/search?q=" + query.strip()
+        print("Opening url in browser: " + query)
+        mbrofi.xdg_open(url)
+    else:
+        print("Empty query.")
 
 
 def main_rofi_function(launcher_args):
