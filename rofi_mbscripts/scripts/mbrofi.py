@@ -205,7 +205,7 @@ def run_mbscript(scriptpath, arguments=[]):
     if not os.path.isfile(scriptpath):
         print("Script '" + scriptpath + "' not found...")
         sys.exit(1)
-    proc = Popen(['python3 ' + scriptpath] + arguments, shell=True)
+    proc = Popen([scriptpath] + arguments, shell=True)
     proc.communicate()
 
 

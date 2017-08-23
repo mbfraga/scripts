@@ -54,17 +54,17 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         filerepo = mbrofi.FileRepo(enabled_path)
         filerepo.scan_files()
-        tempfiles = filerepo.filenames()
-        files = []
-        for f in tempfiles:
-            if '.py' in f:
-                files.append(f.split('.')[0])
+        files = filerepo.filenames()
+        displaynames = []
+        for f in files:
+            if '.' in f:
+                displaynames.append(f.split('.')[0])
 
-        INDEX, FILTER, SEL, EXIT = main_function(files)
+        INDEX, FILTER, SEL, EXIT = main_function(displaynames)
         if (EXIT == 0):
             # This is the case where enter is pressed
             print("Main function of the script.")
-            mbrofi.run_mbscript(os.path.join(scripts_path, SEL + ".py"))
+            mbrofi.run_mbscript(os.path.join(enabled_path, files[int(INDEX)]))
         elif (EXIT == 1):
             # This is the case where rofi is escaped (should EXIT)
             sys.exit(0)
@@ -75,21 +75,15 @@ if __name__ == "__main__":
             if len(sys.argv) != 3:
                 print("Invalid number of arguments. 'enable <scriptname>'")
                 sys.exit(1)
-            print("Enabling " + sys.argv[2] + ".py ...")
-            if '.py' not in sys.argv[2]:
-                scriptname = sys.argv[2] + '.py'
-            else:
-                scriptname = sys.argv[2]
+            print("Enabling " + sys.argv[2] + " ...")
+            scriptname = sys.argv[2]
             enable_script(scriptname)
         elif sys.argv[1] == 'disable':
             if len(sys.argv) != 3:
                 print("Invalid number of arguments. 'disable <scriptname>'")
                 sys.exit(1)
-            print("Disabling " + sys.argv[2] + ".py ...")
-            if '.py' not in sys.argv[2]:
-                scriptname = sys.argv[2] + '.py'
-            else:
-                scriptname = sys.argv[2]
+            print("Disabling " + sys.argv[2] + "...")
+            scriptname = sys.argv[2]
             disable_script(scriptname)
         else:
             print("Invalid argument. Choose between enable/disable")
