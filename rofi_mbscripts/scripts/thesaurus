@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# user variables
+terminal=st
+
+
+# application variables
+QUERY=""
+#BIND1="alt+o"
+#BIND2="alt+p"
+## a nice way to add bindings
+
+# launcher variables
+MSG="Dictionary"
+PROMPT="thesaurus:"
+ANSWER=""
+SEL=""
+INDEX=0
+if [[ -z "$LAUNCHER" ]];then
+   LAUNCHER="rofi"
+fi
+
+
+# run correct launcher with prompt and help message
+function _launcher () {
+   rofi -dmenu -p "$PROMPT" -mesg "$MSG" -format 'i;f'
+   #-kb-custom-1 "$BIND1" -kb-custom-2 "$BIND2"
+}
+
+function thesaurus () {
+   sdcv -n -u "Moby Thesaurus II" $@ | tail -n +5
+}
+
+# function that creates a list for the launcher
+function print_listofopts () {
+   echo ""
+}
+
+function main_function () {
+   if [[ $# -lt 1 ]]; then
+      ANSWER=$(print_listofopts | _launcher)
+   else
+      ANSWER=$(thesaurus "$@" | _launcher)
+   fi
+
+   EXIT=$?
+   IFS=';' read INDEX FILTER <<< $ANSWER
+}
+
+# Run the script
+# Loop so that you can have submenus or toggle options
+while true; do
+   main_function $QUERY
+   echo "ANSWER: $ANSWER"
+   echo "INDEX: $INDEX"
+   echo "FILTER: $FILTER"
+   echo "EXIT: $EXIT"
+   echo "----------"
+   MSG="$FILTER"
+   if [[ $EXIT -eq 0 ]]; then
+      # This is the case where enter is pressed.
+      if [[ ! -z "$FILTER" ]];then
+         QUERY=$FILTER
+      fi
+   elif [[ $EXIT -eq 1 ]]; then
+      # This is the case where rofi es escaped (should EXIT)
+      break
+   else
+      break
+   fi
+done

@@ -59,7 +59,8 @@ if __name__ == "__main__":
         for f in files:
             if '.' in f:
                 displaynames.append(f.split('.')[0])
-
+            else:
+                displaynames.append(f)
         INDEX, FILTER, SEL, EXIT = main_function(displaynames)
         if (EXIT == 0):
             # This is the case where enter is pressed
