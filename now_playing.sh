@@ -2,6 +2,12 @@
 # Print now playing from mpd via mpc
 # use -n to send notification
 # use -p to paste to cursor
+#
+# Dependencies:
+# * mpc
+# * notify-send (only for -n)
+# * xdotool (only for -p)
+
 
 # notify-send settings:
 ns_urgency="normal" #low/normal/critical

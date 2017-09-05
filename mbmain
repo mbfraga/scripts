@@ -1,6 +1,0 @@
-#!/bin/bash
-# Simple launcher script for showing the rofi menu I built
-
-ROOT_PATH="$( cd "$( dirname "$0" )" && pwd )"
-
-python3 $ROOT_PATH/rofi_mbscripts/mbmain.py ${@}
