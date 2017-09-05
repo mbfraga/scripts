@@ -14,8 +14,9 @@ __version__ = '0.0'
 __author__  = 'Martin B. Fraga <mbfraga@gmail.com>'
 
 
-def rofi(entries, launcher_arguments=False, additional_args=[]):
-    """ main rofi function
+def rofi(entries, launcher_arguments=False, additional_args=[]): 
+    """ Call rofi and return a tuple with rofi's stdout as a string separated
+    by newlines, and the exit code of rofi as a string.
 
     Keyword arguments:
     entries -- list of strings that will be displayed by rofi.
@@ -99,13 +100,14 @@ def rofi_ask(question, prompt=None, abort_key=None):
         return(False)
 
 def rofi_enter(premise, prompt=None, options = [], dfilter=None, bindings=[]):
-    """Use rofi to request an entry from the user and return it.
+    """Use rofi to request an entry from the user. Function returns a tuple
+    with the selected entry, and the exit code.
 
     Keyword arguments:
     premise -- string defining the premise on what the user should enter
     prompt -- string for prompt to use (default None)
-    options -- list of options that the user can select from (optional)
-    dfilter -- default filter for rofi
+    options -- list of options that the user can select from (default [])
+    dfilter -- default filter for rofi (default None)
     bindings -- list of extra bindings to accept (default []).
     """
     launcher_args = {}
@@ -134,18 +136,20 @@ def rofi_enter(premise, prompt=None, options = [], dfilter=None, bindings=[]):
             return(None, exit)
 
 
-
-
-def notify(title, message, duration=4000):
+def notify(title, message=None, duration=4000):
     """Send notification via notify-send.
     
     Keyword arguments:
     title -- string for title of notification
-    message -- string for message
+    message -- string for message (default None)
     duration -- duration of notification (default 4000)
     """
-    proc = Popen(['notify-send', '-t', str(duration), title,  message])
-    proc.communicate()
+    if message is None:
+        proc = Popen(['notify-send', '-t', str(duration), title])
+    else:
+        proc = Popen(['notify-send', '-t', str(duration), title,  message])
+    exit_code = proc.communicate()
+    return(exit_code)
 
 
 def clip(clipstring, selection='both'):

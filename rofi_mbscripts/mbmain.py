@@ -27,6 +27,10 @@ launcher_args['bindings'] = BINDINGS
 launcher_args['index'] = INDEX
 
 def enable_script(scriptname):
+    if (scriptname == "mbrofi.py"):
+        print("mbrofi.py is not meant to be an mbscript, " +
+              "it is a helper script.")
+        sys.exit(1)
     spath = os.path.join(scripts_path, scriptname)
     epath = os.path.join(enabled_path, scriptname)
     if not os.path.isfile(spath):
