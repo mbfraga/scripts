@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Print all 256 colors defined in your terminal emulator
 
 #for i in {0..255} ; do 

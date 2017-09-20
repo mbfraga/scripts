@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 # prints the list of special characters. I use this as a simple command that
 # can be hooked into st to print special characters/smileys/etc without
 # xdotools
 
 ROOT_PATH="$( cd "$( dirname "$0" )" && pwd )"
 
-cat $ROOT_PATH/special_character_list
+cat "$ROOT_PATH/special_character_list"
