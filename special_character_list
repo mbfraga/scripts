@@ -186,12 +186,61 @@ double line drawing        : ╦
 
 left bracket              : ｢
 right bracket             : ｣
+left japanese quote       : ｢
+right japanse quote       : ｣
 right angle bracket       : 〉
 left angle bracket        : 〈
 left corner bracket       : 「
 right corner bracket      : 」
 fat left corner bracket   : 『
 fat right corner bracket  : 』
+
+
+geometric black square               : ■
+geometric white square               : □
+geometric medium black square        : ◼
+geometric medium white square        : ◻
+geometric small black square         : ▪
+geometric small white square         : ▫
+geometric black triangle up          : ▲
+geometric white triangle up          : △
+geometric small black triangle  up   : ▴
+geometric small white triangle  up   : ▵
+geometric black triangle right       : ▶
+geometric white triangle right       : ▷
+geometric small black triangle right : ▸
+geometric small white triangle right : ▹
+geometric black triangle left        : ◀
+geometric white triangle left        : ◁
+geometric small black triangle left  : ◂
+geometric small white triangle left  : ◃
+geometric black triangle down        : ▼
+geometric white triangle down        : ▽
+geometric small black triangle down  : ▾
+geometric small white triangle down  : ▿
+geometric black diamond              : ◆
+geometric white diamond              : ◇
+geometric black-in-white diamond     : ◈
+geometric black-in-white circle      : ◉
+geometric black circle               : ●
+geometric white circle               : ○
+geometric dotted circle              : ◌
+
+geometric circle left black          : ◐
+geometric circle right black         : ◑
+geometric circle bottom black        : ◒
+geometric circle upper black         : ◓
+geometric circle upper right black   : ◔
+geometric circle all but left black  : ◕
+geometric upper left circular arc    : ◜
+geometric upper right circular arc   : ◝
+geometric lower right circular arc   : ◞
+geometric lower left circular arc    : ◟
+geometric upper half circular arc    : ◠
+geometric lower half circular arc    : ◡
+
+geomteric black right pointer        : ►
+geomteric white right pointer        : ◄
 
 
 frog                      : 🐸
