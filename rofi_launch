@@ -8,6 +8,9 @@ _rofi () {
 
 if [[ $# -eq 1 ]]; then
    sel="$(cut -d '|' -f1 $1 | _rofi)"
+   if [[ $? -eq 1 ]]; then
+      exit 1
+   fi
    if [[ $sel -ge 0 ]];then
       eval $(sed "$sel!d" <$1 |cut -d '|' -f2)
    fi
