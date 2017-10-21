@@ -10,12 +10,12 @@ if [[ $# -ne 2 ]]; then
    exit 1
 fi
 
-if [[ -z USE_XDO ]]; then
+if [[ -z $USE_XDO ]]; then
    USE_XDO=false
 fi
 
 
-if ! $USE_XDO && [[ -n "$(i3 --get-socketpath 2>/dev/null)" ]]; then
+if !($USE_XDO) && ([[ -n "$(i3 --get-socketpath 2>/dev/null)" ]]); then
    echo "using i3-msg..."
    i3-msg "[class=$2]" focus 2>/dev/null | grep '"success":true' || \
       eval "$1" || \
