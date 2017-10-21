@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# Uses the application name, and it's window class, and then figures out if
+# it's open or not. If it is open, it focuses it (on i3). Otherwise, the
+# application is run.
+#
+
+if [[ $# -ne 2 ]]; then
+   echo "Invalid number of arguments. Takes 2. First is the application string, and the second is the application class."
+   exit 1
+fi
+
+if [[ -z USE_XDO ]]; then
+   USE_XDO=false
+fi
+
+
+if ! $USE_XDO && [[ -n "$(i3 --get-socketpath 2>/dev/null)" ]]; then
+   echo "using i3-msg..."
+   i3-msg "[class=$2]" focus 2>/dev/null | grep '"success":true' || \
+      eval "$1" || \
+         { echo "Couldn't evaluate '$1' in i3_open_iff_noexist"; exit 1 ;}
+# swaymsg doesn't really let us know if it fails to focus...
+#elif ! $USE_XDO && [[ -n "$(swaymsg --get-socketpath 2>/dev/null)" ]]; then
+#   echo "using swaymsg..."
+#   swaymsg "[class=$2]" focus 2>/dev/null | grep '"success":true' || \
+#      eval "$1" || \
+#         { echo "Couldn't evaluate '$1' in i3_open_iff_noexist"; exit 1 ;}
+else
+   if [[ -n "$(command -v xdo)" ]] ; then
+   # i3-agnostic method
+   echo "using xdo..."
+   xdo activate -N "$2" || eval "$1" ||
+         { echo "Couldn't evaluate '$1' in i3_open_iff_noexist"; exit 1 ;}
+   fi
+fi
