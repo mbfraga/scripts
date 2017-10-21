@@ -1,0 +1,18 @@
+#!/bin/sh
+
+_rofi () {
+   rofi -dmenu -filter ":" -no-custom -auto-select -p 'open' -format 'd'
+
+
+}
+
+if [[ $# -eq 1 ]]; then
+   sel="$(cut -d '|' -f1 $1 | _rofi)"
+   if [[ $sel -ge 0 ]];then
+      eval $(sed "$sel!d" <$1 |cut -d '|' -f2)
+   fi
+else
+   echo 'Invalid use of rofi_launch. run `rofi_launch $file`.'
+   exit 1
+fi
+
