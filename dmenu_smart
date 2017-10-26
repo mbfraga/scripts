@@ -1,0 +1,11 @@
+#!/bin/sh
+# author: Martin B. Fraga
+# script that generates a menu specific to the active window. (prototype)
+
+winid="$(xdo id)"
+winclass="$(xprop -id $winid WM_CLASS)"
+class_re='(")([^ ]+)("$)'
+class=$([[ $winclass =~ $class_re ]] && echo ${BASH_REMATCH[2]})
+
+
+echo -e "$winid\n$class" |dmenu -w $winid
