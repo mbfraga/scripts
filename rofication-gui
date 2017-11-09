@@ -146,7 +146,7 @@ while True:
             "<b>{title}</b> <small>({client})</small>\n<i>{message}</i>".format(
                 title   = (strip_tags(n.get('title'))),
                 client  = (strip_tags(n.get('client'))),
-                message = (strip_tags(n.get('message').replace("\n"," ")))
+                message = (strip_tags(n.get('message')))#.replace("\n"," ")))
             )
         )
         if n.get('urgency') == 2:

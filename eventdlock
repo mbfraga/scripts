@@ -1,0 +1,7 @@
+#!/bin/sh
+
+eventdctl nd stop
+
+i3lock -n
+
+eventdctl reload

@@ -79,4 +79,5 @@ selected_symbol=$(cut -d "$sep" -f 2 <<< "$selected_string")
 #trim whitespace
 selected_symbol=${selected_symbol// }
 
+echo "$selected_symbol"
 xdotool type --delay 100 "$selected_symbol"

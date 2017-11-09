@@ -1,0 +1,21 @@
+#!/bin/sh
+
+maim /tmp/lockshot.png
+
+convert /tmp/lockshot.png -scale 5% -scale 2000% /tmp/lockshot-pixel.png
+
+shred -u /tmp/lockshot.png &
+
+(
+   if [[ -e /tmp/lockshot-pixel.png ]]; then
+      i3lock -nei /tmp/lockshot-pixel.png
+   else
+      i3lock -nec "333333"
+   fi
+) &
+
+
+(
+   sleep 20
+   pgrep i3lock && xset dpms force off
+) &
