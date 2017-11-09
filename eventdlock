@@ -2,6 +2,6 @@
 
 eventdctl nd stop
 
-i3lock -n
+i3lock -n -e -c "333333"
 
 eventdctl reload
