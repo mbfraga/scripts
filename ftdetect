@@ -1,0 +1,15 @@
+#!/bin/sh --
+# ftdetect - attempts to detect the fallback family used for a given glyph
+
+# requires pango-view awk
+
+if [ "$#" -lt 2 ]; then
+    printf 'usage: ftdetect family glyph\n' >&2
+    exit 1
+fi
+
+lastmatch() {
+    awk -F \" -v pattern="$1" '$0 ~ pattern {m = $2} END {print m}'
+}
+
+FC_DEBUG=4 pango-view -q --font "$1" -t "$2" 2>&1 | lastmatch 'family: '
