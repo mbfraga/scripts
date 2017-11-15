@@ -353,19 +353,37 @@ tio2                  :TiO₂
 e=mc2                 :E = m·c²
 
 
-smiley_hug1                : (っ´ω｀)っ
-smiley_hug2                : ⊂(´Д`⊂)
+smiley_hug_r1              : (っ´ω｀)っ
+smiley_hug_l1              : ⊂(´Д`⊂)
+smiley_hug_r2              : (つﾟ⊿ﾟ)つ
+smiley_hug_r3              : (っ^_^)っ
+smiley_hug_r4              : (⊃｡•́‿•̀｡)⊃
+smiley_hug_r5              : (っಠ‿ಠ)っ
+smiley_hug_l2              : ⊂(´• ω •`⊂)
+smiley_hug_l3              : ⊂(･ω･*⊂
+smiley_hug_g               : ⊂(￣▽￣)⊃
 smiley_mischevious         : (｡◕‿‿◕｡)
 smiley_frustrated          : (屮ﾟДﾟ)屮
 smiley_fight               : (ง •̀_•́)ง
 smiley_fight_srz           : (ง ͠° ͟ʖ ͡°)ง
 smiley_fightL              : L(° O °L)
+smiley_fight2              : (」＞＜)」
+smiley_fight               : (งಠ_ಠ)ง
+smiley_fight               : σ( •̀ ω •́ σ)
+smiley_fight               : O-(`⌒´Q)
+smiley_fight               : Q(`⌒´Q)
+smiley_fight_punch         : (`⌒*)O-(`⌒´Q)
 smiley_fin_adventure_time  : | (• ◡•)|
 smiley_dunno               : ¯\(°_o)/¯
 smiley_dunno2              : ┐( ﾟーﾟ)┌
 smiley_dunno3              : ¯\(°◡ﾟ)/¯
 smiley dunno4              : ┐('～`；)┌
 smiley dunno5              : ¯\_(ツ)_/¯
+smiley_dunno6              : ┐(￣ヘ￣)┌
+smiley_dunno7              : ╮(￣_￣)╭
+smiley_dunno8              : ╮(︶︿︶)╭
+smiley_dunno9              : ┐( ˘ ､ ˘ )┌
+smiley_dunno10             : ┐( ˘_˘ )┌
 smiley_jake_adventure_time : (❍ᴥ❍ʋ)
 smiley wtf mad             : (ಠ_ಠ)
 smiley_crying              : (ಥ_ಥ)
@@ -382,6 +400,145 @@ smiley_tableflip           : (╯°□°)╯ ┻━┻
 smiley_singing             : ヾ(*´Д｀*)ﾉ
 smiley_cute_dunno          : ╮ (.❛ᴗ❛.) ╭
 smiley_pow_cat             : ٩( 'ω' )و
+smiley_nervous_sweating    : (-_-;)
+smiley_happy_smile         : (^.^)
+smiley_happy_smile_drugs   : (◕‿◕)
+smiley_:3_blushing         : (*´ω｀*)
+smiley_:3                  : (　^ω^)
+smiley_:3_sad              : (´；ω；｀)
+smiley_:3_surprised        : (´・ω・｀)
+smiley_:3_goodbye          : (ヽ´ω`)
+smiley_:3_blushing_2       : (*´▽｀*)
+smiley_happy               : (^-^)
+smiley_smoking             : ( ´ー`)y─┛
+smiley_smoking_omg         : (,,ﾟДﾟ)y─┛
+
+smiley_cat_happy           : =^.^=
+smiley_cat_:3              : (=ﾟωﾟ=)
+smiley_cat                 : (=^･ω･^=)
+smiley_cat                 : ( =ω=)..nyaa
+smiley_cat                 : ଲ(ⓛ ω ⓛ)ଲ
+
+
+smiley_surprised           : o_0
+
+smiley_cute_smile          : (´｡• ᵕ •｡`)
+smiey_smile_satisfied      : (*¯︶¯*)
+smiley_nervous_smile       : (⌒_⌒;)
+smiley_tiny_smile          : (ᵔ.ᵔ)
+smiley_embarassed          : (*/ω＼)
+smiley_embarassed2         : (⁄ ⁄•⁄ω⁄•⁄ ⁄)
+smiley_wtf                 : (；￣Д￣)
+smiley_wtf2                : (＃￣ω￣)
+smiley_unimpressed         : =_=
+smiley_unimpressed2        : (︶︹︺)
+smiley_unimpressed3        : (￣ヘ￣)
+smiley_unimpressed4        : (￣︿￣)
+smiley_unimpressed_fu      : 凸(￣ヘ￣)
+
+smiley_sour_giggle         : (＞﹏＜)
+
+
+smiley_angry               : (益)
+smiley_angry_scream        : ( #｀Д´)
+smiley_angry_scream2       : (＃`Д´)
+smiley_angry_shakefist     : ヾ(`ヘ´)ﾉﾞ
+smiley_angry_punch         : ☆ｏ(＞＜；)○
+
+smiley_facepalm            : (ノ_<。)
+smiley_sad                 : (｡╯︵╰｡)
+smiley_sad_cry_nose        : ( ﾟ，_ゝ｀)
+smiley_sad_crying          : (╥_╥)
+smiley_sad_crying2         : (╥﹏╥)
+smiley_sad_cry_hug         : (っ˘̩╭╮˘̩)っ
+smiley-sad                 : (｡•́︿•̀｡)
+
+
+smiley_confused            : σ(￣、￣〃)
+smiley_confused2           : (・_・;)
+smiley_confused3           : (・・ ) ?
+smiley_confused4           : (￣_￣)・・・
+smiley_confused5           : (ー.ー;)
+
+smiley_doubt               : (￢_￢)
+smiley_doubt               : (￢‿￢)
+smiley_doubt               : (↼_↼)
+smiley_doubt               : (⇀_⇀)
+
+smiley_surprise            : ヽ(°〇°)ﾉ
+smiley_surprise            : (⊙_⊙)
+smiley_surprise            : (O_O;)
+smiley_surprise            : ( : ౦ ‸ ౦ : )
+smiley-surprise            : (o_O) !
+
+smiley_wave                : (*・ω・)ﾉ
+smiley_wave                : (￣▽￣)ノ
+smiley_wave                : (^-^*)/
+smiley_wave                : (´• ω •`)ﾉ
+smiley_wave                : ( ´ ▽ ` )ﾉ
+smiley_wave                : ~ヾ(・ω・)
+smiley_wave                : ヾ(^ω^*)
+smiley_wave                : (・_・)ノ
+smiley_wave                : (o´ω`o)ﾉ
+smiley_wave                : (⌒ω⌒)ﾉ
+smiley_wave                : (o´▽`o)ﾉ
+
+smiley_wink                : (^_−)
+smiley_wink                : (^_~)
+
+smiley_hide_wave           : |ω･)ﾉ
+smiley_hide_wave           : ヾ(･|
+smiley_hide_wave           : ┬┴┬┴┤･ω･)ﾉ
+smiley_hide_:3             : |･ω･)
+smiley_hide_scared         : |д･)
+smiley_hide_lenny          : ┬┴┬┴┤( ͡° ͜ʖ├┬┴┬┴
+smiley_hide                : ┬┴┬┴┤(･_├┬┴┬┴
+smiley_hide_wave_creepy    : |ʘ‿ʘ)╯
+
+smiley_running             : ε=ε=ε=ε=┌(;￣▽￣)┘
+smiley_running             : ε=ε=┌( >_<)┘
+smiley_running             : ヽ(￣д￣;)ノ=3=3=3
+smiley_running_hug         : ε===(っ≧ω≦)っ
+smiley_running             : 。。。ミヽ(。＞＜)ノ
+
+smiley_sleep               : [(－－)]..zzZ
+smiley_sleep               : (－_－) zzZ
+smiley_sleep               : (∪｡∪)｡｡｡zzZ
+smiley_sleep               : (－ω－) zzZ
+smiley_sleep               : (￣ρ￣)..zzZZ
+smiley_sleep               : (－.－)...zzz
+smiley_sleep               : (＿ ＿*) Z z z
+
+smiley_magic               : ╰( ͡° ͜ʖ ͡° )つ──☆*:・ﾟ
+smiley_magic               : (ノ ˘_˘)ノ　ζ|||ζ　ζ|||ζ　ζ|||ζ
+smiley_magic               : (∩` ﾛ ´)⊃━炎炎炎炎炎
+
+smiley_food                : (っ˘ڡ˘ς)
+
+smiley_music               : (〜￣▽￣)〜
+smiley_music               : 〜(￣▽￣〜)
+smiley_music               : ♪(/_ _ )/♪
+smiley_music               : └(＾＾)┐
+smiley_music               : ┌(＾＾)┘
+smiley_music               : ヾ(⌐■_■)ノ♪
+smiley_music               : (~˘▽˘)~
+smiley_music               : ~(˘▽˘~)
+smiley_music               : (~‾▽‾)~
+smiley_music               : ~(˘▽˘)~
+smiley_music               : (〜￣△￣)〜
+smiley_music               : ( ˘ ɜ˘) ♬ ♪ ♫
+
+smiley_wake_up             : ٩(ˊ〇ˋ*)و
+smiley_military_salute     : (￣^￣)ゞ
+smiley_furious_tableflip   : (╯°益°)╯彡┻━┻
+smiley_tableflip           : ( ╯°□°)╯ ┻━━┻
+
+smiley_hungry              : (￣﹃￣)
+
+smiley_lying               : _(:3 」∠)_
+smiley_lying               : ∠( ᐛ 」∠)＿
+
+
 
 inverted wut               : ¿ʇnʍ
 
