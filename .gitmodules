@@ -1,0 +1,3 @@
+[submodule "external/autorandr"]
+	path = external/autorandr
+	url = https://github.com/phillipberndt/autorandr
