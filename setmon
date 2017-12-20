@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Arrange displays in a sensible way using the following logic:
+# If only a single connected display, connect to it.
+# Else, cycle through possible arrangments
+#     * side-by-side
+#     * mirror
+#     * Only display 1
+#     * Only display 2
+
+# dependencies:
+#     * xrandr
+
+connectedOutputs=$(xrandr | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
+connectedNumber=$(echo $connectedOutputs | wc -w)
+
+
+if [[ $connectedNumber -eq 1 ]]; then
+   echo "Only found a single display, '$connectedOutputs'."
+   xrandr --output "$connectedOutputs" --auto
+else
+   echo "Multiple displays found. Cycling..."
+fi
+
+echo -e "\nDEBUG -----------"
+echo "$connectedOutputs"
+echo "$connectedNumber"
