@@ -1,0 +1,40 @@
+#!/bin/sh
+
+
+# Arrange displays in a somewhat sensible way. Use autorandr to set
+# configuration.
+
+connectedOutputs=($(xrandr | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/"))
+connectedNumber="${#connectedOutputs[@]}"
+
+if [[ $connectedNumber -eq 1 ]]; then
+   echo "Only one display was found, '$connectedOutputs'."
+   autorandr default
+   exit 0
+fi
+
+currentProfile=($(autorandr 2>&1 | grep "(current)" |cut -d " " -f1))
+currentProfile="${currentProfile[0]}"
+
+case "$currentProfile" in
+   "default" | "laptop")
+      echo "using default/linux, switching to both"
+      autorandr both
+      exit 0
+      ;;
+   "both")
+      echo "using both, switching to external"
+      autorandr external
+      exit 0
+      ;;
+   "external")
+      echo "using external, switching to default"
+      autorandr default
+      exit 0
+      ;;
+   *)
+      echo "using other, '$currentProfile', switching to default"
+      autorandr default
+      exit 0
+      ;;
+esac
